@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Admin>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Adminler</h1>
+
+<p>
+    <a asp-action="AddAdmin" class="btn btn-outline-primary">Yeni Admin Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Admin ID
+            </th>
+            <th>
+                Kullanıcı Adı
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                    <a asp-action="DeleteAdmin" asp-route-id="@item.AdminId" class="btn btn-outline-danger">Sil</a> |
+                    <a asp-action="EditAdmin" asp-route-id="@item.AdminId" class="btn btn-outline-warning">Düzenle</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

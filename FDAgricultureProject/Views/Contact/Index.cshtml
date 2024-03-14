@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Contact>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Mesajlar</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mesaj Id
+            </th>
+            <th>
+                Ad Soyad
+            </th>
+            <th>
+                Mail
+            </th>
+            <th>
+                Tarih
+            </th>
+            <th>Mesaj</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="MessageDetails" asp-route-id="@item.ContactID" class="btn btn-outline-primary">Mesajı Gör</a>
+            </td>
+            <td>
+                    <a asp-action="DeleteMessage" asp-route-id="@item.ContactID" class="btn btn-outline-danger">Mesajı Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

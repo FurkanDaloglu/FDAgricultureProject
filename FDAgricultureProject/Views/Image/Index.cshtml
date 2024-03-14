@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Image>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Görsel Listesi</h4>
+            <div class="table-responsive">
+                <p>
+                    <a asp-action="AddImage" class="btn btn-outline-primary">Yeni Görsel Ekle</a>
+                </p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Başlık</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="py-1"><img src="@item.ImageUrl" alt="image" /></td>
+                                <td>@item.Title</td>
+                                <td><a asp-action="DeleteImage" asp-route-id="@item.ImageID" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a asp-action="EditImage" asp-route-id="@item.ImageID" class="btn btn-outline-warning">Güncelle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

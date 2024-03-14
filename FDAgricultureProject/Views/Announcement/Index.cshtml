@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Announcement>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Duyuru Listesi</h1>
+
+<p>
+    <a asp-action="AddAnnouncement" class="btn btn-outline-primary">Yeni Duyuru</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Duyuru No
+            </th>
+            <th>
+                Başlık
+            </th>
+            <th>
+                Açıklama
+            </th>
+            <th>
+                Tarih
+            </th>
+            <th>
+                Aktiflik Durumu
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnnouncementID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="EditAnnouncement" asp-route-id="@item.AnnouncementID" class="btn btn-outline-warning">Güncelle</a> |
+                    <a asp-action="DeleteAnnouncement" asp-route-id="@item.AnnouncementID" class="btn btn-outline-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
